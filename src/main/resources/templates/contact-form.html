@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href=https://fonts.googleapis.com/icon?family=Material+Icons>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: Helvetica;
+        font-size: 12px;
+        background-color: #f2f2f2;
+        color: #5B5B5A;
+      }
+
+      .btn {
+        width: 100%;
+        background-color: #6BD3CC;
+        color: white;
+        font-weight:bold;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .btn-link {
+        background-color: #6BD3CC;
+        color: white;
+        font-weight:bold;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .container {
+        display: flex;
+      }
+
+      .container section {
+        padding: 20px;
+      }
+
+      .section-left {
+        background: #f2f2f2;
+        width: 50%;
+      }
+
+      .section-right {
+        background: white;
+        width: 50%;
+        margin-top:10px;
+        border-radius: 10px;
+      }
+
+      .emphasized {
+        font-size: 28px;
+        font-weight: bold;
+        color: #6BD3CC;
+      }
+
+      .intro {
+        padding-top: 20px;
+      }
+
+      .address {
+        padding-top: 10px;
+      }
+
+      .contact {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .contact-detail {
+        vertical-align: super;
+      }
+
+      .form-group {
+        margin-bottom: 5px;
+      }
+
+      .control-label {
+        font-size: 12px;
+      }
+
+      .form-control {
+        font-family: Helvetica;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        resize: vertical;
+      }
+
+      .help-block {
+        font-size: 12px;
+      }
+
+      .validation-error {
+        font-size: 12px;
+        color: red;
+        font-weight: bold;
+      }
+
+      .footer {
+        padding-bottom: 10px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="section-left">
+            <div class="emphasized">    We are here to help,</div>
+            <div class="emphasized">    simply get in touch.</div>
+            <div class="intro">
+                We'll happily answer any questions you may have. Please call, email or even write. Or use the contact form below.
+            </div>
+            <div class="address">
+                <div class="contact">
+                    <span class="material-icons">email</span>
+                    <span class="contact-detail"><a href=mailto:team@mixam.uk>team@mixam.uk</a></span>
+                </div>
+                <div class="contact">
+                    <span class="material-icons">call</span>
+                    <span class="contact-detail">01923 594 252</span>
+                </div>
+                <div class="contact">
+                    <span class="material-icons">location_on</span>
+                    <span class="contact-detail">6 Hercules Way, Watford, Hertfordshire, WD25 7GS UK</span>
+                </div>
+                <div class="contact">
+                    <a class="btn-link" target="_blank" href=https://www.google.com/maps/place/Mixam/@51.6943735,-0.4134056,17z/data=!3m1!4b1!4m12!1m6!3m5!1s0x48766aabeca6807f:0xd3475ead9298751e!2sMixam!8m2!3d51.6943735!4d-0.4112169!3m4!1s0x48766aabeca6807f:0xd3475ead9298751e!8m2!3d51.6943735!4d-0.4112169?hl=en>Google Maps</a>
+                </div>
+            </div>
+        </section>
+        <section class="section-right">
+            <form action="#" th:action="@{/register}" method="post" th:object="${contact}">
+                <div class="form-group">
+                    <label class="control-label">* Your Name</label>
+                    <div>
+                        <input class="form-control" th:field="*{fullName}" type="text" id="fullName" placeholder="Your Name...">
+                        <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="validation-error" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">* Email Address</label>
+                    <div>
+                        <input class="form-control" th:field="*{emailAddress}" type="email" id="emailAddress" placeholder="Email Address..." >
+                        <span th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}" class="validation-error" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">* Phone Number</label>
+                    <div>
+                        <input class="form-control" th:field="*{phoneNumber}" type="text" id="phoneNumber" placeholder="Phone Number..."  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="validation-error" />
+                        <span class="help-block">Format: 123-456-7890.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Company Name</label>
+                    <div>
+                        <input class="form-control" type="text" th:field="*{companyName}" id="companyName" placeholder="Company Name...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Order Number</label>
+                    <div>
+                        <input class="form-control" type="text" th:field="*{orderNumber}" id="orderNumber" placeholder="Order Number...">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">*  Message</label>
+                    <textarea class="form-control" th:field="*{message}" id="message" placeholder="I am interested in..." rows="5" cols="40"></textarea>
+                    <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}" class="validation-error" />
+                </div>
+                <div class="footer">By submitting this form, you agree to our
+                    <a href="">Terms & Conditions</a> and <a href="">Privacy Policy</a>.
+                </div>
+                <input class="btn" type="submit" value="Send">
+            </form>
+        </section>
+    </div>
+</body>
+</html>

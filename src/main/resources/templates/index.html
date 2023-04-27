@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Mixam</title>
+    <style>
+      body {
+        font-family: Helvetica;
+        font-size: 12px;
+        color: #5B5B5A;
+      }
+
+      .btn-link {
+        background-color: #6BD3CC;
+        color: white;
+        font-weight:bold;
+        margin-top: 30px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+    </style>
+</head>
+<body>
+<div align="center">
+    <div>
+        <img width="300px" height="100px" th:src="@{/images/logo.png}"/>
+    </div>
+    <br>
+    <br>
+    <a class="btn-link" href="register">Contact Us</a>
+</div>
+</body>
+</html>
